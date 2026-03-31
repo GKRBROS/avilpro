@@ -1,46 +1,43 @@
 .float {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
-  z-index: 10000;
+  bottom: 32px;
+  right: 32px;
+  z-index: 9000;
   display: flex;
   align-items: center;
-  gap: 15px;
-  background: var(--text-emerald);
-  color: var(--bg-cream);
-  padding: 12px 24px;
-  border-radius: 51px;
-  box-shadow: 0 15px 31px rgba(0, 0, 0, 0.15);
+  gap: 12px;
   cursor: pointer;
   text-decoration: none;
 }
 
 .text {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
+  background: #fff;
+  color: #1A1A1A;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  padding: 10px 16px;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  white-space: nowrap;
 }
 
 .iconBox {
-  width: 40px;
-  height: 40px;
-  background: var(--accent-yellow);
-  color: var(--text-emerald);
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+  flex-shrink: 0;
 }
 
-@media (max-width: 600px) {
-  .text {
-    display: none;
-  }
-  .float {
-    padding: 12px;
-    bottom: 20px;
-    right: 20px;
-  }
+@media (max-width: 640px) {
+  .float  { bottom: 20px; right: 16px; }
+  .text   { display: none; }           /* hide label on mobile, icon only */
+  .iconBox{ width: 52px; height: 52px; }
 }

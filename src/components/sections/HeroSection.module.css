@@ -84,10 +84,10 @@
 .footerInfo {
   position: absolute;
   bottom: 31px;
-  right: 5%;
+  left: 5%;
   display: flex;
   gap: 60px;
-  text-align: right;
+  text-align: left;
 }
 
 .infoBox h4 {
