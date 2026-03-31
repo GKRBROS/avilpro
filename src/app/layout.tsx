@@ -38,8 +38,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/avil-pro-removebg-preview.png" sizes="any" />
-        {/* Force the very first paint to yellow — eliminates white flash before loader mounts */}
-        <style>{`html, body { background-color: #FBE106 !important; overflow: hidden; }`}</style>
+        {/* Keep body non-scrollable until loader finishes; white bg so no flash behind the loader */}
+        <style>{`html, body { background-color: #ffffff; overflow: hidden; }`}</style>
       </head>
       <body>
         <LoadingOverlay />

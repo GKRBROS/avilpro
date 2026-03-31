@@ -1,65 +1,68 @@
 .section {
   padding: 120px 0;
-  background-color: var(--bg-cream);
+  background: var(--brand-white);
 }
 
 .card {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  gap: 80px;
   align-items: center;
-  background: white;
-  padding: 80px;
-  border-radius: 41px;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.05);
+  background: var(--brand-cream);
+  padding: 70px 80px;
+  border-radius: 40px;
+  border: 2px solid rgba(151, 227, 60, 0.2);
 }
 
 .title {
-  font-size: 4rem;
-  font-weight: 800;
-  color: var(--text-emerald);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--brand-dark);
+  margin-bottom: 16px;
 }
 
 .title span {
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-style: italic;
+  -webkit-text-stroke: 1.5px var(--brand-dark);
+  color: transparent;
   display: block;
 }
 
 .desc {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   line-height: 1.6;
-  color: var(--text-emerald);
-  opacity: 0.7;
-  max-width: 400px;
+  color: var(--brand-dark);
+  opacity: 0.6;
+  max-width: 380px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
-.form input, .form textarea {
-  background: var(--bg-cream);
-  border: 1px solid rgba(10, 46, 28, 0.1);
-  padding: 20px;
-  border-radius: 12px;
-  color: var(--text-emerald);
-  font-family: var(--font-body);
+.form input,
+.form textarea {
+  background: var(--brand-white);
+  border: 2px solid rgba(0,0,0,0.08);
+  padding: 16px 20px;
+  border-radius: 14px;
+  color: var(--brand-dark);
+  font-family: var(--font-sub);
+  font-size: 1rem;
   transition: border-color 0.3s ease;
+  width: 100%;
 }
 
-.form input:focus, .form textarea:focus {
+.form input:focus,
+.form textarea:focus {
   outline: none;
-  border-color: var(--text-emerald);
+  border-color: var(--brand-light-green);
 }
 
 .errorInput {
@@ -76,7 +79,8 @@
   .card {
     grid-template-columns: 1fr;
     padding: 40px;
-    gap: 60px;
+    gap: 50px;
     text-align: center;
   }
+  .desc { max-width: 100%; }
 }
