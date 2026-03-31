@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <p>© {new Date().getFullYear()} Avilpro Boutique. Designed by AVILPRO Team.</p>
+          <p>© {new Date().getFullYear()} AVILPRO. Developed by Avilpro.</p>
         </div>
       </div>
     </footer>
