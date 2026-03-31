@@ -37,6 +37,17 @@ export default function HeroSection() {
               <span>Modern Boutique</span>
               <span>Pure Milk</span>
            </motion.div>
+
+            <div className={styles.footerInfo}>
+              <div className={styles.infoBox}>
+                <h4>BOUTIQUE BRAND</h4>
+                <p>Crafted for the Connoisseur</p>
+              </div>
+              <div className={styles.infoBox}>
+                <h4>10+ OUTLETS</h4>
+                <p>Across Thrissur & Kochi</p>
+              </div>
+            </div>
            
            <motion.h2 
              initial={{ opacity: 0, y: 51 }}
@@ -69,21 +80,13 @@ export default function HeroSection() {
              alt="AVILPRO Signature Drink" 
              width={700} 
              height={800} 
+             loading="eager"
+             sizes="(max-width: 768px) 85vw, (max-width: 1200px) 50vw, 700px"
+             quality={72}
              className={styles.mainDrink}
              priority
            />
         </motion.div>
-      </div>
-
-      <div className={styles.footerInfo}>
-         <div className={styles.infoBox}>
-            <h4>BOUTIQUE BRAND</h4>
-            <p>Crafted for the Connoisseur</p>
-         </div>
-         <div className={styles.infoBox}>
-            <h4>10+ OUTLETS</h4>
-            <p>Across Thrissur & Kochi</p>
-         </div>
       </div>
     </section>
   );

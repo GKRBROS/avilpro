@@ -3,12 +3,20 @@
 :root {
   --font-main: 'Outfit', sans-serif;
   --font-sub: 'Plus Jakarta Sans', sans-serif;
+  --font-display: var(--font-main);
+  --font-body: var(--font-sub);
   
   --brand-light-green: #97E33C;
   --brand-yellow: #FBE106;
   --brand-white: #FFFFFF;
   --brand-cream: #FFFDF0;
   --brand-dark: #1A1A1A;
+
+  /* Legacy aliases used by section styles */
+  --bg-cream: var(--brand-cream);
+  --text-emerald: var(--brand-dark);
+  --accent-peach: #ffe4c9;
+  --accent-yellow: var(--brand-yellow);
   
   --spacing-section: 120px;
 }
@@ -50,8 +58,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .stroke-text {
+  /* Keep highlight readable while preserving outlined look */
+  color: rgba(26, 26, 26, 0.12);
   -webkit-text-stroke: 1.5px var(--brand-dark);
-  color: transparent;
+  -webkit-text-fill-color: rgba(26, 26, 26, 0.12);
+}
+
+.giant-text {
+  font-size: clamp(4rem, 17vw, 13rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+}
+
+section[id] {
+  scroll-margin-top: 120px;
 }
 
 .btn-boutique {

@@ -2,6 +2,7 @@
 
 import styles from "./AboutSection.module.css";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function AboutSection() {
   return (
@@ -15,7 +16,15 @@ export default function AboutSection() {
                whileInView={{ opacity: 1, x: 0 }}
                viewport={{ once: true }}
              >
-                <div className={styles.badge}>ORIGIN 2011</div>
+               <Image
+                src="/boutique-exterior.png"
+                alt="Avilpro store exterior"
+                fill
+                sizes="(max-width: 992px) 100vw, 40vw"
+                className={styles.storeImage}
+               />
+               <div className={styles.imageOverlay} />
+               <div className={styles.badge}>SINCE 2011</div>
                 <div className={styles.qualityCircle}>
                    <span>100%</span>
                    <p>Natural</p>
@@ -42,7 +51,7 @@ export default function AboutSection() {
               viewport={{ once: true }}
             >
               At Avilpro, we believe that true taste lies in the purity of ingredients. 
-              Our journey began with a mission to redefine Kerala's beloved Avil Milk 
+              Our journey began with a mission to redefine Kerala&apos;s beloved Avil Milk 
               into a premium, high-quality experience. Every cup we serve is a blend 
               of crispy, tender poha and the creamiest milk.
             </motion.p>

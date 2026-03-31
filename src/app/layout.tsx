@@ -5,6 +5,7 @@ import WhatsAppFloat from "../components/WhatsAppFloat";
 import { LoadingProvider } from "../components/LoadingContext";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://avilpro.in"),
   title: "AVILPRO | Thrissur's Favourite Premium Avilmilk Brand",
   description: "Experience the legendary Avil Milk reimagined. Premium ingredients, 60+ flavours, and an authentic heritage of taste. Located in Chavakkad, Thrissur, Kochi.",
   keywords: ["Avil Milk", "Premium Milkshakes", "Thrissur Food", "Avilpro", "Kerala Desserts", "Healthy Drinks"],
