@@ -37,8 +37,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Explicitly remove default favicon if browser caches it */}
         <link rel="icon" href="/avil-pro-removebg-preview.png" sizes="any" />
+        {/* Force the very first paint to yellow — eliminates white flash before loader mounts */}
+        <style>{`html, body { background-color: #FBE106 !important; overflow: hidden; }`}</style>
       </head>
       <body>
         <LoadingOverlay />

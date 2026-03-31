@@ -21,6 +21,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* The inline style in layout.tsx sets initial bg to yellow.
+     Once the loader removes overflow:hidden, this transition kicks in. */
+  transition: background-color 0.3s ease;
 }
 
 body {
@@ -29,6 +32,7 @@ body {
   font-family: var(--font-sub);
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background-color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
