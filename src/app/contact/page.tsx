@@ -21,7 +21,9 @@ export default function ContactPage() {
             >
               Contact <span className="stroke-text">Us.</span>
             </motion.h1>
-            <p className={styles.subtitle}>Our doors are open, and our milk is creamy. Visit or reach out.</p>
+            <p className={styles.subtitle}>
+              Our doors are open, and our milk is creamy. Visit or reach out.
+            </p>
           </div>
         </section>
 
@@ -36,7 +38,11 @@ export default function ContactPage() {
                 title="Avilpro store location map"
                 width="100%"
                 height="450"
-                style={{ border: 0, borderRadius: "30px", boxShadow: "0 20px 50px rgba(0,0,0,0.1)" }}
+                style={{
+                  border: 0,
+                  borderRadius: "30px",
+                  boxShadow: "0 20px 50px rgba(0,0,0,0.1)",
+                }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

@@ -5,7 +5,7 @@
   --font-sub: 'Plus Jakarta Sans', sans-serif;
   --font-display: var(--font-main);
   --font-body: var(--font-sub);
-  
+
   --brand-light-green: #97E33C;
   --brand-yellow: #FBE106;
   --brand-white: #FFFFFF;
@@ -17,7 +17,7 @@
   --text-emerald: var(--brand-dark);
   --accent-peach: #ffe4c9;
   --accent-yellow: var(--brand-yellow);
-  
+
   --spacing-section: 120px;
 }
 
@@ -43,7 +43,12 @@ body {
   transition: background-color 0.3s ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-main);
   font-weight: 700;
   line-height: 1.1;
@@ -107,7 +112,7 @@ section[id] {
   :root {
     --spacing-section: 80px;
   }
-  
+
   .container {
     padding: 0 24px;
   }

@@ -61,7 +61,7 @@
 .form input,
 .form textarea {
   background: var(--brand-white);
-  border: 2px solid rgba(0,0,0,0.08);
+  border: 2px solid rgba(0, 0, 0, 0.08);
   padding: 16px 20px;
   border-radius: 14px;
   color: var(--brand-dark);
@@ -94,5 +94,8 @@
     gap: 50px;
     text-align: center;
   }
-  .desc { max-width: 100%; }
+
+  .desc {
+    max-width: 100%;
+  }
 }

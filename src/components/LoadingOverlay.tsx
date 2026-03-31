@@ -28,18 +28,28 @@ export default function LoadingOverlay() {
 
   // useLayoutEffect: fires synchronously before browser paint
   useLayoutEffect(() => {
-    const navEntry = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+    const navEntry = performance.getEntriesByType("navigation")[0] as
+      | PerformanceNavigationTiming
+      | undefined;
     const isReload = navEntry?.type === "reload";
 
     // On browser refresh, always land on home root.
-    if (isReload && (window.location.pathname !== "/" || window.location.hash)) {
+    if (
+      isReload &&
+      (window.location.pathname !== "/" || window.location.hash)
+    ) {
       window.location.replace("/");
       return;
     }
 
     const hasSeenLoader = sessionStorage.getItem(LOADER_SEEN_KEY) === "1";
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const shouldAnimateLoader = window.location.pathname === "/" && !hasSeenLoader && !prefersReducedMotion;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const shouldAnimateLoader =
+      window.location.pathname === "/" &&
+      !hasSeenLoader &&
+      !prefersReducedMotion;
 
     if (!shouldAnimateLoader) {
       requestAnimationFrame(() => {
@@ -72,7 +82,9 @@ export default function LoadingOverlay() {
     }, 1200);
 
     return () => {
-      clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
       document.documentElement.style.overflow = "";
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -86,14 +98,18 @@ export default function LoadingOverlay() {
         className={styles.juice}
         initial={{ y: "100%" }}
         animate={
-          phase === "fill"  ? { y: "0%"   } :
-          phase === "logo"  ? { y: "0%"   } :
-          /* drain */         { y: "100%" }
+          phase === "fill"
+            ? { y: "0%" }
+            : phase === "logo"
+              ? { y: "0%" }
+              : /* drain */ { y: "100%" }
         }
         transition={
-          phase === "fill"  ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] } :
-          phase === "drain" ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] } :
-          { duration: 0 }
+          phase === "fill"
+            ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] }
+            : phase === "drain"
+              ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] }
+              : { duration: 0 }
         }
       />
 
@@ -103,12 +119,18 @@ export default function LoadingOverlay() {
         initial={{ y: "100%" }}
         animate={{ y: phase !== "drain" ? "0%" : "100%" }}
         transition={
-          phase === "fill"  ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] } :
-          phase === "drain" ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] } :
-          { duration: 0 }
+          phase === "fill"
+            ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] }
+            : phase === "drain"
+              ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] }
+              : { duration: 0 }
         }
       >
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className={styles.wave}>
+        <svg
+          viewBox="0 0 1440 100"
+          preserveAspectRatio="none"
+          className={styles.wave}
+        >
           <path
             d="M0,60 C200,100 400,20 720,60 C1040,100 1240,20 1440,60 L1440,100 L0,100 Z"
             fill="#FBE106"

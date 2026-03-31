@@ -87,7 +87,7 @@
 
 .mainDrink {
   object-fit: contain;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.12));
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12));
 }
 
 .footerInfo {
@@ -140,11 +140,16 @@
     text-align: center;
     gap: 60px;
   }
+
   .content {
     margin: 0 auto;
     align-items: center;
   }
-  .pills { justify-content: center; }
+
+  .pills {
+    justify-content: center;
+  }
+
   .footerInfo {
     margin: 20px auto 28px;
     max-width: 620px;

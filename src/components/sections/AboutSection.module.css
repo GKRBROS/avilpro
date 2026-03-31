@@ -23,7 +23,7 @@
   border-radius: 41px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 40px 100px rgba(0,0,0,0.05);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05);
 }
 
 .storeImage {
@@ -62,7 +62,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 31px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 31px rgba(0, 0, 0, 0.05);
 }
 
 .qualityCircle span {
@@ -126,10 +126,12 @@
     grid-template-columns: 1fr;
     gap: 80px;
   }
+
   .imageCard {
     height: 401px;
   }
 }
+
 @media (max-width: 600px) {
   .title {
     font-size: 3rem;
