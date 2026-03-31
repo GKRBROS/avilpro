@@ -23,10 +23,10 @@ export default function Footer() {
           <div className={styles.column}>
             <h3>EXPLORE</h3>
             <div className={styles.linksList}>
-              <Link href="/#menu" className={styles.link}>The Palette</Link>
-              <Link href="/#about" className={styles.link}>Our Story</Link>
-              <Link href="/#gallery" className={styles.link}>Boutique Gallery</Link>
-              <Link href="/#contact-form" className={styles.link}>Franchise Enquiry</Link>
+              <Link href="/#menu" className={styles.link}>Our Menu</Link>
+              <Link href="/#about" className={styles.link}>Story</Link>
+              <Link href="/#gallery" className={styles.link}>Gallery</Link>
+              <Link href="/contact" className={styles.link}>Contact Us</Link>
             </div>
           </div>
 
