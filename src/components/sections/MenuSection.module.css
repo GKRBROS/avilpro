@@ -1,0 +1,87 @@
+.menu {
+  background-color: var(--bg-cream);
+  border-top: 1px solid rgba(10, 46, 28, 0.05);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--accent-green);
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 5rem;
+  font-weight: 800;
+  color: var(--text-emerald);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  height: 480px;
+  border-radius: 41px;
+  padding: 51px;
+  display: flex;
+  align-items: flex-end;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.02);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.highlight {
+  border-color: var(--accent-yellow);
+}
+
+.cardContent {
+  width: 100%;
+}
+
+.icon {
+  font-size: 4.5rem;
+  margin-bottom: 20px;
+}
+
+.name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: var(--text-emerald);
+  line-height: 1.1;
+}
+
+.line {
+  width: 61px;
+  height: 5px;
+  background: var(--text-emerald);
+  opacity: 0.2;
+  margin-bottom: 31px;
+}
+
+.orderBtn {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-emerald);
+}
+
+@media (max-width: 992px) {
+  .title {
+    font-size: 3.5rem;
+  }
+}

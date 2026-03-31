@@ -1,0 +1,46 @@
+.float {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: var(--text-emerald);
+  color: var(--bg-cream);
+  padding: 12px 24px;
+  border-radius: 51px;
+  box-shadow: 0 15px 31px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.text {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.iconBox {
+  width: 40px;
+  height: 40px;
+  background: var(--accent-yellow);
+  color: var(--text-emerald);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .text {
+    display: none;
+  }
+  .float {
+    padding: 12px;
+    bottom: 20px;
+    right: 20px;
+  }
+}

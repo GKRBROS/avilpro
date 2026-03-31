@@ -1,0 +1,136 @@
+.contactPage {
+  background-color: var(--bg-cream);
+  padding-top: 151px;
+}
+
+.hero {
+  padding-bottom: 80px;
+  text-align: center;
+}
+
+.title {
+  font-size: 6rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: var(--text-emerald);
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  opacity: 0.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.mapSection {
+  padding: 80px 0;
+}
+
+.mapGrid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 60px;
+  min-height: 500px;
+}
+
+.mapInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.infoCard {
+  padding: 30px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 31px rgba(0,0,0,0.03);
+  transition: transform 0.3s ease;
+}
+
+.infoCard:hover {
+  transform: translateY(-5px);
+}
+
+.infoCard h3 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-emerald);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.infoCard p {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.icon {
+  margin-bottom: 15px;
+  color: var(--accent-light-green);
+}
+
+.mapWrapper {
+  background: white;
+  border-radius: 41px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.05);
+  padding: 20px;
+}
+
+.outletsSection {
+  padding: 120px 0;
+}
+
+.sectionTitle {
+  font-size: 3rem;
+  margin-bottom: 60px;
+  color: var(--text-emerald);
+  text-align: center;
+}
+
+.outletGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.outletCard {
+  background: white;
+  padding: 40px;
+  border-radius: 30px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.03);
+  border: 1px solid rgba(10, 46, 28, 0.05);
+  transition: all 0.3s ease;
+}
+
+.outletCard:hover {
+  border-color: var(--accent-yellow);
+  box-shadow: 0 20px 60px rgba(251, 225, 6, 0.1);
+}
+
+.outletCard h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: var(--text-emerald);
+}
+
+.outletCard p {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+  .mapGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .title {
+    font-size: 4rem;
+  }
+  .mapWrapper {
+    height: 400px;
+  }
+}

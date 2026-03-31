@@ -1,0 +1,120 @@
+.about {
+  background-color: var(--bg-cream);
+  border-top: 1px solid rgba(10, 46, 28, 0.05);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 100px;
+}
+
+.visuals {
+  display: flex;
+  justify-content: center;
+}
+
+.imageCard {
+  width: 100%;
+  height: 601px;
+  background: var(--accent-peach);
+  border-radius: 41px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.05);
+}
+
+.badge {
+  position: absolute;
+  top: 31px;
+  left: 31px;
+  background: var(--text-emerald);
+  color: var(--bg-cream);
+  padding: 10px 20px;
+  border-radius: 51px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+
+.qualityCircle {
+  position: absolute;
+  bottom: 31px;
+  right: 31px;
+  width: 121px;
+  height: 121px;
+  background: var(--bg-cream);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 31px rgba(0,0,0,0.05);
+}
+
+.qualityCircle span {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text-emerald);
+}
+
+.qualityCircle p {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: var(--text-emerald);
+}
+
+.title {
+  font-size: 5rem;
+  margin-bottom: 31px;
+}
+
+.desc {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--text-emerald);
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+
+.values {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.valueItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 700;
+  color: var(--text-emerald);
+  font-size: 1.1rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: var(--accent-yellow);
+  border-radius: 50%;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+  .imageCard {
+    height: 401px;
+  }
+}
+@media (max-width: 600px) {
+  .title {
+    font-size: 3rem;
+  }
+}
