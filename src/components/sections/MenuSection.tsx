@@ -8,7 +8,7 @@ const MENU_ITEMS = [
   { 
     name: "Lotus Biscoff Delight", 
     desc: "Speculoos cream blend with caramelized biscuit crunch.",
-    image: "/menu-biscoff.png", 
+    image: "/hero-drink.png", 
     color: "#FBE106" 
   },
   { 
@@ -32,7 +32,7 @@ const MENU_ITEMS = [
   { 
     name: "Lebanese Kunafa", 
     desc: "Middle-eastern inspired blend with crunchy vermicelli.",
-    image: "/menu-biscoff.png", 
+    image: "/hero-drink.png", 
     color: "#97E33C" 
   },
   { 
@@ -75,6 +75,7 @@ export default function MenuSection() {
                     src={item.image} 
                     alt={item.name} 
                     fill 
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={styles.img}
                   />
                   <div className={styles.overlay} style={{ backgroundColor: item.color + "99" }}>

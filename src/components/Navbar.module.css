@@ -64,3 +64,24 @@
   .navLinks:first-child { display: none; }
   .socials              { display: none; }
 }
+
+@media (max-width: 640px) {
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .cta {
+    padding: 8px 14px;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+  }
+
+  .logo {
+    width: 92px;
+    height: auto;
+  }
+}

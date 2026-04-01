@@ -1,15 +1,29 @@
 "use client";
 
+import { useEffect } from "react";
 import styles from "./HeroSection.module.css";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useLoading } from "@/components/LoadingContext";
 
 export default function HeroSection() {
   const { scrollYProgress } = useScroll();
+  const { loaded } = useLoading();
+  const productEntranceControls = useAnimation();
 
   const yText = useTransform(scrollYProgress, [0, 0.5], [0, -300]);
   const yDrink = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const scaleDrink = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
+
+  useEffect(() => {
+    if (!loaded) return;
+
+    productEntranceControls.start({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9, ease: [0.23, 1, 0.32, 1] },
+    });
+  }, [loaded, productEntranceControls]);
 
   return (
     <section className={styles.hero}>
@@ -54,7 +68,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            The Art of <br />
+            <span className={styles.mainLine}>The Art of</span>
             <span>Avil Milk.</span>
           </motion.h2>
 
@@ -70,22 +84,21 @@ export default function HeroSection() {
 
         <motion.div
           className={styles.productFocus}
-          style={{ y: yDrink, scale: scaleDrink }}
-          initial={{ opacity: 0, scale: 0.5, y: 100 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+          initial={{ opacity: 0, y: -120 }}
+          animate={productEntranceControls}
         >
-          <Image
-            src="/signature-drink.png"
-            alt="AVILPRO Signature Drink"
-            width={700}
-            height={800}
-            loading="eager"
-            sizes="(max-width: 768px) 85vw, (max-width: 1200px) 50vw, 700px"
-            quality={72}
-            className={styles.mainDrink}
-            priority
-          />
+          <motion.div style={{ y: yDrink, scale: scaleDrink }}>
+            <Image
+              src="/signature-drink.png"
+              alt="AVILPRO Signature Drink"
+              width={700}
+              height={800}
+              loading="eager"
+              sizes="(max-width: 768px) 85vw, (max-width: 1200px) 50vw, 700px"
+              className={styles.mainDrink}
+              priority
+            />
+          </motion.div>
         </motion.div>
       </div>
     </section>

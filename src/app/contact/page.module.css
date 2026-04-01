@@ -37,5 +37,26 @@
 }
 
 @media (max-width: 768px) {
+  .contactPage {
+    padding-top: 104px;
+  }
+
+  .hero {
+    padding-bottom: 34px;
+  }
+
   .title { font-size: 3rem; }
+
+  .subtitle {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .mapSection {
+    padding: 54px 0 80px;
+  }
+
+  .mapWrapper {
+    border-radius: 18px;
+  }
 }

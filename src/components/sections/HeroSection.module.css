@@ -4,7 +4,8 @@
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding-top: 151px;
+  padding-top: clamp(96px, 12vh, 151px);
+  padding-bottom: clamp(24px, 5vh, 56px);
   background: var(--brand-white);
 }
 
@@ -26,6 +27,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
+  gap: clamp(24px, 4vw, 56px);
   position: relative;
   z-index: 10;
 }
@@ -36,13 +38,20 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 18px;
 }
 
 .content h2 {
   font-size: clamp(3rem, 7vw, 6rem);
   font-weight: 800;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  line-height: 0.95;
   color: var(--brand-dark);
+}
+
+.mainLine {
+  display: block;
+  white-space: nowrap;
 }
 
 .content h2 span {
@@ -64,7 +73,7 @@
 .pills {
   display: flex;
   gap: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 0;
   flex-wrap: wrap;
 }
 
@@ -86,6 +95,9 @@
 }
 
 .mainDrink {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12));
 }
@@ -97,7 +109,7 @@
   text-align: left;
   z-index: 20;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   align-items: stretch;
 }
 
@@ -135,10 +147,16 @@
 }
 
 @media (max-width: 992px) {
+  .hero {
+    min-height: auto;
+    padding-top: 110px;
+    padding-bottom: 50px;
+  }
+
   .container {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 60px;
+    gap: 36px;
   }
 
   .content {
@@ -151,13 +169,47 @@
   }
 
   .footerInfo {
-    margin: 20px auto 28px;
+    margin: 12px auto 8px;
     max-width: 620px;
     padding: 0;
+  }
+
+  .productFocus {
+    width: 100%;
+  }
+
+  .mainDrink {
+    max-width: min(86vw, 520px);
   }
 }
 
 @media (max-width: 600px) {
+  .hero {
+    padding-top: 94px;
+  }
+
+  .mainLine {
+    white-space: normal;
+  }
+
+  .content {
+    gap: 14px;
+  }
+
+  .content h2 {
+    font-size: clamp(2.4rem, 12vw, 3.6rem);
+  }
+
+  .content p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .pills span {
+    font-size: 0.62rem;
+    padding: 6px 10px;
+  }
+
   .footerInfo {
     grid-template-columns: 1fr;
     gap: 12px;
@@ -167,5 +219,14 @@
   .infoBox {
     width: 100%;
     min-width: 0;
+    padding: 11px 14px;
+  }
+
+  .infoBox h4 {
+    font-size: 0.92rem;
+  }
+
+  .infoBox p {
+    font-size: 0.76rem;
   }
 }

@@ -13,8 +13,6 @@ export default function LoadingOverlay() {
   const [visible, setVisible] = useState(true);
   const { setLoaded } = useLoading();
 
-  const LOADER_SEEN_KEY = "avilpro_loader_seen";
-
   const restoreHashPosition = () => {
     const rawHash = window.location.hash;
     if (!rawHash || rawHash.length < 2) return;
@@ -42,36 +40,17 @@ export default function LoadingOverlay() {
       return;
     }
 
-    const hasSeenLoader = sessionStorage.getItem(LOADER_SEEN_KEY) === "1";
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const shouldAnimateLoader =
-      window.location.pathname === "/" &&
-      !hasSeenLoader &&
-      !prefersReducedMotion;
-
-    if (!shouldAnimateLoader) {
-      requestAnimationFrame(() => {
-        setVisible(false);
-        setLoaded(true);
-        restoreHashPosition();
-      });
-      return;
-    }
-
     // Step 1: lock scroll
     document.documentElement.style.overflow = "hidden";
 
     // Step 2: juice fills → logo pops in
-    const t1 = setTimeout(() => setPhase("logo"), 350);
+    const t1 = setTimeout(() => setPhase("logo"), 1200);
     // Step 3: drain starts
-    const t2 = setTimeout(() => setPhase("drain"), 850);
+    const t2 = setTimeout(() => setPhase("drain"), 2400);
     // Step 4: loader exits, scroll restored, float appears
     const t3 = setTimeout(() => {
       setVisible(false);
       setLoaded(true);
-      sessionStorage.setItem(LOADER_SEEN_KEY, "1");
       document.documentElement.style.overflow = ""; // ✅ restores scroll
 
       // If the page was opened/refreshed with a hash URL, re-apply anchor scroll
@@ -79,7 +58,7 @@ export default function LoadingOverlay() {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => restoreHashPosition());
       });
-    }, 1200);
+    }, 3400);
 
     return () => {
       clearTimeout(t1);
@@ -106,9 +85,9 @@ export default function LoadingOverlay() {
         }
         transition={
           phase === "fill"
-            ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] }
+            ? { duration: 1.1, ease: [0.76, 0, 0.24, 1] }
             : phase === "drain"
-              ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] }
+              ? { duration: 0.9, ease: [0.76, 0, 0.24, 1] }
               : { duration: 0 }
         }
       />
@@ -120,9 +99,9 @@ export default function LoadingOverlay() {
         animate={{ y: phase !== "drain" ? "0%" : "100%" }}
         transition={
           phase === "fill"
-            ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] }
+            ? { duration: 1.1, ease: [0.76, 0, 0.24, 1] }
             : phase === "drain"
-              ? { duration: 0.35, ease: [0.76, 0, 0.24, 1] }
+              ? { duration: 0.9, ease: [0.76, 0, 0.24, 1] }
               : { duration: 0 }
         }
       >

@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AVILPRO Website
+
+A premium boutique brand website for AVILPRO, built with Next.js App Router.
+
+## Project Snapshot
+
+- Brand-first landing experience with animated hero and section storytelling
+- Dedicated contact page with store map embed and WhatsApp lead capture
+- Story section with visual identity elements (Since 2011 / 100% Natural)
+- Optimized loading behavior for faster perceived performance
+- Mobile-responsive layout across all major sections
+
+## Tech Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Framer Motion
+- CSS Modules
+- ESLint
+
+## Routes
+
+- `/` Home page (hero, menu, story, gallery, stores, contact form)
+- `/about` Redirect route to `/#about`
+- `/contact` Contact and map page
 
 ## Getting Started
 
-First, run the development server:
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev    # Start local development
+npm run lint   # Run ESLint checks
+npm run build  # Create production build
+npm run start  # Start production server
+```
 
-## Learn More
+## Folder Structure
 
-To learn more about Next.js, take a look at the following resources:
+```text
+src/
+	app/
+		page.tsx
+		contact/
+		about/
+	components/
+		Navbar.tsx
+		Footer.tsx
+		LoadingOverlay.tsx
+		sections/
+			HeroSection.tsx
+			MenuSection.tsx
+			AboutSection.tsx
+			GallerySection.tsx
+			StoreSection.tsx
+			WhatsAppForm.tsx
+public/
+	signature-drink.png
+	boutique-exterior.png
+	avil-pro-removebg-preview.png
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Quality Status
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- ESLint: passing
+- Production build: passing
+- Static prerender routes: `/`, `/about`, `/contact`
 
-## Deploy on Vercel
+## Performance Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Loader now runs with shorter timing and skips repeated displays in-session.
+- Hero image uses responsive `sizes` and tuned quality for faster delivery.
+- `metadataBase` is configured for proper metadata URL resolution.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+Build and run production locally:
+
+```bash
+npm run build
+npm run start
+```
+
+Deploy on Vercel, Azure Static Web Apps, or any Node-compatible hosting provider.
+
+## License
+
+Private project for AVILPRO brand website.
