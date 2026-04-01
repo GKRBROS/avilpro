@@ -1,17 +1,18 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useLayoutEffect, useRef, useState } from "react";
 import styles from "./LoadingOverlay.module.css";
 import Image from "next/image";
 import { useLoading } from "./LoadingContext";
-
-type Phase = "fill" | "logo" | "drain";
+import { gsap } from "gsap";
 
 export default function LoadingOverlay() {
-  const [phase, setPhase] = useState<Phase>("fill");
   const [visible, setVisible] = useState(true);
   const { setLoaded } = useLoading();
+  const juiceRef = useRef<HTMLDivElement | null>(null);
+  const waveRef = useRef<HTMLDivElement | null>(null);
+  const logoRef = useRef<HTMLDivElement | null>(null);
+  const progressRef = useRef<HTMLDivElement | null>(null);
 
   const restoreHashPosition = () => {
     const rawHash = window.location.hash;
@@ -43,27 +44,61 @@ export default function LoadingOverlay() {
     // Step 1: lock scroll
     document.documentElement.style.overflow = "hidden";
 
-    // Step 2: juice fills → logo pops in
-    const t1 = setTimeout(() => setPhase("logo"), 1200);
-    // Step 3: drain starts
-    const t2 = setTimeout(() => setPhase("drain"), 2400);
-    // Step 4: loader exits, scroll restored, float appears
-    const t3 = setTimeout(() => {
-      setVisible(false);
-      setLoaded(true);
-      document.documentElement.style.overflow = ""; // ✅ restores scroll
+    const tl = gsap.timeline();
+    gsap.set(juiceRef.current, { yPercent: 100 });
+    gsap.set(waveRef.current, { yPercent: 100 });
+    gsap.set(logoRef.current, { autoAlpha: 0, scale: 0.3, y: 40 });
+    gsap.set(progressRef.current, { scaleX: 0, transformOrigin: "left center" });
 
-      // If the page was opened/refreshed with a hash URL, re-apply anchor scroll
-      // after the loader releases scroll lock.
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => restoreHashPosition());
+    tl.to([juiceRef.current, waveRef.current], {
+      yPercent: 0,
+      duration: 1.1,
+      ease: "power3.inOut",
+      stagger: 0,
+    })
+      .to(
+        progressRef.current,
+        {
+          scaleX: 1,
+          duration: 2.4,
+          ease: "none",
+        },
+        "<",
+      )
+      .to(
+        logoRef.current,
+        {
+          autoAlpha: 1,
+          scale: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "back.out(1.6)",
+        },
+        "-=0.2",
+      )
+      .to({}, { duration: 0.7 })
+      .to(logoRef.current, { autoAlpha: 0, duration: 0.35 })
+      .to(
+        [juiceRef.current, waveRef.current],
+        {
+          yPercent: 100,
+          duration: 0.9,
+          ease: "power3.inOut",
+          stagger: 0,
+        },
+        "-=0.1",
+      )
+      .call(() => {
+        setVisible(false);
+        setLoaded(true);
+        document.documentElement.style.overflow = "";
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => restoreHashPosition());
+        });
       });
-    }, 3400);
 
     return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
+      tl.kill();
       document.documentElement.style.overflow = "";
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -72,39 +107,10 @@ export default function LoadingOverlay() {
 
   return (
     <div className={styles.root} aria-hidden="true">
-      {/* Yellow juice: floods up, then drains down */}
-      <motion.div
-        className={styles.juice}
-        initial={{ y: "100%" }}
-        animate={
-          phase === "fill"
-            ? { y: "0%" }
-            : phase === "logo"
-              ? { y: "0%" }
-              : /* drain */ { y: "100%" }
-        }
-        transition={
-          phase === "fill"
-            ? { duration: 1.1, ease: [0.76, 0, 0.24, 1] }
-            : phase === "drain"
-              ? { duration: 0.9, ease: [0.76, 0, 0.24, 1] }
-              : { duration: 0 }
-        }
-      />
+      <div ref={juiceRef} className={styles.juice} />
 
       {/* Decorative wave on leading edge */}
-      <motion.div
-        className={styles.waveWrapper}
-        initial={{ y: "100%" }}
-        animate={{ y: phase !== "drain" ? "0%" : "100%" }}
-        transition={
-          phase === "fill"
-            ? { duration: 1.1, ease: [0.76, 0, 0.24, 1] }
-            : phase === "drain"
-              ? { duration: 0.9, ease: [0.76, 0, 0.24, 1] }
-              : { duration: 0 }
-        }
-      >
+      <div ref={waveRef} className={styles.waveWrapper}>
         <svg
           viewBox="0 0 1440 100"
           preserveAspectRatio="none"
@@ -115,31 +121,23 @@ export default function LoadingOverlay() {
             fill="#FBE106"
           />
         </svg>
-      </motion.div>
+      </div>
 
-      {/* Logo spring reveal */}
       <div className={styles.centerStage}>
-        <AnimatePresence>
-          {(phase === "logo" || phase === "drain") && (
-            <motion.div
-              key="logo"
-              className={styles.logoBox}
-              initial={{ scale: 0.3, opacity: 0, y: 40 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 1.1, opacity: 0, transition: { duration: 0.35 } }}
-              transition={{ type: "spring", stiffness: 280, damping: 22 }}
-            >
-              <Image
-                src="/avil-pro-removebg-preview.png"
-                alt="Avilpro"
-                width={220}
-                height={110}
-                className={styles.logo}
-                priority
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div ref={logoRef} className={styles.logoBox}>
+          <Image
+            src="/avil-pro-removebg-preview.png"
+            alt="Avilpro"
+            width={220}
+            height={110}
+            className={styles.logo}
+            priority
+          />
+          <p className={styles.loaderLabel}>Preparing your Avilpro experience...</p>
+          <div className={styles.progressTrack}>
+            <div ref={progressRef} className={styles.progressFill} />
+          </div>
+        </div>
       </div>
     </div>
   );

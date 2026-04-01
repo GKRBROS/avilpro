@@ -1,86 +1,191 @@
 .gallery {
   background: var(--brand-cream);
-  padding: 120px 0;
+  padding: 90px 0 120px;
   overflow: hidden;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 52px;
+  padding: 0 20px;
 }
 
 .title {
-  font-size: clamp(3rem, 7vw, 6rem);
+  font-size: clamp(2.4rem, 6vw, 5.2rem);
   color: var(--brand-dark);
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  opacity: 0.5;
-  margin-top: 16px;
+  font-size: 1rem;
+  opacity: 0.65;
+  margin-top: 14px;
 }
 
-.mosaic {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+.circularWrap {
+  width: 100%;
+  padding: 0 18px;
 }
 
-.imageWrapper {
+.circularStage {
   position: relative;
-  border-radius: 30px;
-  overflow: hidden;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  max-width: 980px;
+  margin: 0 auto;
+  height: clamp(460px, 68vh, 760px);
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.72), rgba(227, 248, 205, 0.56) 44%, rgba(211, 240, 178, 0.3) 68%, transparent 100%);
 }
 
-.imageWrapper:hover {
-  border-color: var(--brand-yellow);
-  box-shadow: 0 20px 60px rgba(251, 225, 6, 0.2);
+.orbit {
+  --radius: clamp(150px, 22vw, 280px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--radius) * 2);
+  height: calc(var(--radius) * 2);
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+}
+
+.orbitItem {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: rotate(var(--angle)) translateX(var(--radius)) rotate(calc(-1 * var(--angle)));
+  transform-origin: center center;
+}
+
+.imageShell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.cardCounterSpin {
+  transform-origin: center center;
+}
+
+.orbitCard {
+  width: clamp(150px, 18vw, 230px);
+  height: clamp(180px, 22vw, 280px);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  background: #0e0e0e;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
 }
 
 .img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
-  transition: transform 0.8s ease;
+  transform: scale(1.03);
+  transition: transform 0.7s ease;
 }
 
-.imageWrapper:hover .img { transform: scale(1.06); }
+.orbitCard:hover .img {
+  transform: scale(1.08);
+}
 
-.overlay {
+.caption {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 28px;
-  background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);
-  color: white;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.22));
+  backdrop-filter: blur(4px);
 }
 
-.imageWrapper:hover .overlay { opacity: 1; }
+.caption h3 {
+  margin: 0;
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}
 
-.overlay span {
-  font-family: var(--font-main);
-  font-weight: 700;
+.caption p {
+  margin: 5px 0 0;
+  font-size: 0.65rem;
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+.centerBadge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  width: min(62vw, 280px);
+  border-radius: 999px;
+  padding: 14px 16px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(12, 12, 12, 0.1);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+}
+
+.centerBadge span {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.9rem;
+  opacity: 0.68;
 }
 
-/* Mosaic sizes */
-.large { grid-column: span 1; height: 550px; }
-.tall  { grid-column: span 1; height: 750px; }
-.small { grid-column: span 1; height: 380px; }
-.wide  { grid-column: span 2; height: 480px; }
+.centerBadge strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.95rem;
+  color: var(--brand-dark);
+}
 
 @media (max-width: 768px) {
-  .mosaic {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .gallery {
+    padding: 70px 0 90px;
   }
-  .imageWrapper     { height: 380px !important; grid-column: span 1 !important; }
-  .title            { font-size: 3rem; }
+  .header {
+    margin-bottom: 36px;
+  }
+  .title {
+    font-size: clamp(1.9rem, 9vw, 2.8rem);
+  }
+
+  .circularWrap {
+    padding: 0 8px;
+  }
+
+  .circularStage {
+    height: 520px;
+    border-radius: 24px;
+  }
+
+  .orbit {
+    --radius: 122px;
+  }
+
+  .orbitCard {
+    width: 134px;
+    height: 168px;
+    border-radius: 16px;
+  }
+
+  .caption h3 {
+    font-size: 0.76rem;
+  }
+
+  .caption p {
+    font-size: 0.58rem;
+  }
+
+  .centerBadge {
+    width: 210px;
+    padding: 10px 12px;
+  }
+
+  .centerBadge strong {
+    font-size: 0.82rem;
+  }
 }
