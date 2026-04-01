@@ -45,7 +45,9 @@
     padding-bottom: 34px;
   }
 
-  .title { font-size: 3rem; }
+  .title {
+    font-size: 3rem;
+  }
 
   .subtitle {
     font-size: 1rem;
