@@ -31,6 +31,7 @@ const HERO_SLIDES = [
 
 export default function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const { scrollYProgress } = useScroll();
 
   const yText = useTransform(scrollYProgress, [0, 0.5], [0, -300]);
@@ -43,6 +44,26 @@ export default function HeroSection() {
     }, 4200);
 
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const syncViewport = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    syncViewport();
+    window.addEventListener("resize", syncViewport);
+
+    return () => window.removeEventListener("resize", syncViewport);
+  }, []);
+
+  useEffect(() => {
+    HERO_SLIDES.forEach((slide, index) => {
+      if (index === 0) return;
+      const preload = new window.Image();
+      preload.src = slide.src;
+      preload.decoding = "async";
+    });
   }, []);
 
   const goPrev = () => {
@@ -58,34 +79,36 @@ export default function HeroSection() {
   return (
     <section className={styles.hero}>
       <div className={styles.grainientWrap}>
-        <Grainient
-          color1="#ffffff"
-          color2="#2afa00"
-          color3="#e1ff00"
-          timeSpeed={0.25}
-          colorBalance={0}
-          warpStrength={1}
-          warpFrequency={5}
-          warpSpeed={2}
-          warpAmplitude={50}
-          blendAngle={0}
-          blendSoftness={0.05}
-          rotationAmount={500}
-          noiseScale={2}
-          grainAmount={0.1}
-          grainScale={2}
-          grainAnimated={false}
-          contrast={1.5}
-          gamma={1}
-          saturation={1}
-          centerX={0}
-          centerY={0}
-          zoom={0.9}
-        />
+        {!isMobile && (
+          <Grainient
+            color1="#ffffff"
+            color2="#2afa00"
+            color3="#e1ff00"
+            timeSpeed={0.25}
+            colorBalance={0}
+            warpStrength={1}
+            warpFrequency={5}
+            warpSpeed={2}
+            warpAmplitude={50}
+            blendAngle={0}
+            blendSoftness={0.05}
+            rotationAmount={500}
+            noiseScale={2}
+            grainAmount={0.1}
+            grainScale={2}
+            grainAnimated={false}
+            contrast={1.5}
+            gamma={1}
+            saturation={1}
+            centerX={0}
+            centerY={0}
+            zoom={0.9}
+          />
+        )}
       </div>
 
       <div className={styles.backgroundText}>
-        <motion.h1
+        <motion.p
           className="giant-text stroke-text"
           style={{ y: yText }}
           initial={{ opacity: 0, scale: 0.8 }}
@@ -93,11 +116,21 @@ export default function HeroSection() {
           transition={{ duration: 1.5, ease: [0.23, 1, 0.32, 1] }}
         >
           AUTHENTIC
-        </motion.h1>
+        </motion.p>
       </div>
 
       <div className={styles.container}>
         <div className={styles.content}>
+          <motion.h1
+            className={styles.heroTitle}
+            initial={{ opacity: 0, y: 51 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <span className={styles.mainLine}>The Art of</span>
+            <span>Avil Milk.</span>
+          </motion.h1>
+
           <motion.div
             className={styles.pills}
             initial={{ opacity: 0, x: -30 }}
@@ -120,21 +153,12 @@ export default function HeroSection() {
             </div>
           </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 51 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-          >
-            <span className={styles.mainLine}>The Art of</span>
-            <span>Avil Milk.</span>
-          </motion.h2>
-
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1 }}
           >
-            Redefining a legendary blend with premium ingredients <br />
+            Redefining a legendary blend with premium ingredients <span className={styles.breakDesktop}><br /></span>
             and a boutique experience. Discover the legend.
           </motion.p>
         </div>

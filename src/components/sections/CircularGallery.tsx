@@ -241,9 +241,18 @@ class Media {
     const img = new window.Image();
     img.crossOrigin = "anonymous";
     img.src = this.image;
+    img.decoding = "async";
     img.onload = () => {
-      texture.image = img;
-      this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+      const applyTexture = () => {
+        texture.image = img;
+        this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+      };
+
+      if (typeof img.decode === "function") {
+        img.decode().then(applyTexture).catch(applyTexture);
+      } else {
+        applyTexture();
+      }
     };
   }
 
@@ -379,7 +388,7 @@ class App {
     this.renderer = new Renderer({
       alpha: true,
       antialias: true,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
+      dpr: Math.min(window.devicePixelRatio || 1, 1.5),
     });
 
     this.gl = this.renderer.gl;
@@ -444,7 +453,7 @@ class App {
   onTouchMove(e: TouchEvent | MouseEvent) {
     if (!this.isDown) return;
     const x = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const distance = (this.start - x) * (this.scrollSpeed * 0.025);
+    const distance = (this.start - x) * (this.scrollSpeed * 0.025) * this.getMotionFactor();
     this.scroll.target = this.scroll.position + distance;
     this.lastPointerMoveAt = Date.now();
   }
@@ -484,13 +493,18 @@ class App {
     this.scroll.target = this.scroll.target < 0 ? -item : item;
   }
 
+  getMotionFactor() {
+    // Mobile: even slower drag response for smoother control on touch screens.
+    return this.screen.width < 768 ? 0.5 : 1;
+  }
+
   getAutoMoveSpeedMultiplier() {
     // Responsive speed: faster on mobile, slower on desktop
-    // Mobile (< 768px): 0.08 (faster)
+    // Mobile (< 768px): 0.04 (slower and smoother flow)
     // Tablet (768-1024px): 0.07 (medium)
     // Desktop (> 1024px): 0.05 (slower)
     const width = this.screen.width;
-    if (width < 768) return 0.08;
+    if (width < 768) return 0.04;
     if (width < 1024) return 0.07;
     return 0.05;
   }
@@ -525,7 +539,8 @@ class App {
       this.scroll.target += this.scrollSpeed * this.autoMoveSpeedMultiplier * this.autoDirection;
     }
 
-    this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
+    const effectiveEase = this.screen.width < 768 ? this.scroll.ease * 0.75 : this.scroll.ease;
+    this.scroll.current = lerp(this.scroll.current, this.scroll.target, effectiveEase);
     const direction: "right" | "left" = this.scroll.current > this.scroll.last ? "right" : "left";
 
     this.medias.forEach((media) => media.update(this.scroll, direction));

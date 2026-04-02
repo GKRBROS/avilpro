@@ -50,7 +50,7 @@ export default function GallerySection() {
       </div>
 
       <div className={styles.circularWrap}>
-        <div style={{ height: "600px", position: "relative" }}>
+        <div className={styles.galleryViewport}>
           <CircularGallery
             items={GALLERY_ITEMS}
             textColor="#ffffff"

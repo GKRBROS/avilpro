@@ -31,18 +31,23 @@
   max-width: 300px;
 }
 
-.socials       { display: flex; gap: 14px; }
+.socials {
+  display: flex;
+  gap: 14px;
+}
+
 .socialIcon {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
   transition: all 0.25s ease;
 }
+
 .socialIcon:hover {
   background: var(--brand-yellow);
   color: var(--brand-dark);
@@ -67,15 +72,44 @@
 }
 
 .link {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.2s ease;
 }
 
-.link:hover { color: var(--brand-yellow); }
+.link:hover {
+  color: var(--brand-yellow);
+}
 
-.contactInfo p  { margin-bottom: 10px; font-size: 1rem; opacity: 0.7; }
+.contactInfo p {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.callButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--brand-yellow);
+  color: var(--brand-yellow);
+  text-decoration: none;
+  font-family: var(--font-main);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.callButton:hover {
+  background: var(--brand-yellow);
+  color: var(--brand-dark);
+  transform: translateY(-2px);
+}
+
 .highlight {
   font-family: var(--font-main);
   font-size: 1.3rem;
@@ -84,7 +118,7 @@
 }
 
 .bottom {
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 36px;
   display: flex;
   justify-content: space-between;
@@ -94,11 +128,60 @@
 }
 
 @media (max-width: 1024px) {
-  .grid { grid-template-columns: 1fr 1fr; gap: 50px; }
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
 }
 
 @media (max-width: 640px) {
-  .footer { padding: 70px 0 36px; }
-  .grid   { grid-template-columns: 1fr; gap: 40px; }
-  .bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .footer {
+    padding: 70px 0 36px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+    text-align: center;
+    justify-items: center;
+  }
+
+  .brand {
+    align-items: center;
+  }
+
+  .tagline {
+    max-width: 34ch;
+    text-align: center;
+  }
+
+  .column {
+    text-align: center;
+  }
+
+  .linksList {
+    align-items: center;
+  }
+
+  .contactInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .callButton {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+
+  .bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    align-items: center;
+  }
 }

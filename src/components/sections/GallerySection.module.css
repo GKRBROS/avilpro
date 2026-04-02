@@ -1,12 +1,12 @@
 .gallery {
   background: var(--brand-cream);
-  padding: 90px 0 120px;
+  padding: 84px 0 28px;
   overflow: hidden;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 52px;
+  margin-bottom: 34px;
   padding: 0 20px;
 }
 
@@ -24,6 +24,16 @@
 .circularWrap {
   width: 100%;
   padding: 0 18px;
+}
+
+.galleryViewport {
+  height: clamp(520px, 72vh, 820px);
+  position: relative;
+}
+
+.galleryCanvas {
+  position: relative;
+  height: clamp(360px, 62vh, 640px);
 }
 
 .circularStage {
@@ -144,17 +154,27 @@
 
 @media (max-width: 768px) {
   .gallery {
-    padding: 70px 0 90px;
+    padding: 64px 0 32px;
   }
+
   .header {
-    margin-bottom: 36px;
+    margin-bottom: 26px;
   }
+
   .title {
     font-size: clamp(1.9rem, 9vw, 2.8rem);
   }
 
   .circularWrap {
     padding: 0 8px;
+  }
+
+  .galleryViewport {
+    height: clamp(360px, 60vh, 560px);
+  }
+
+  .galleryCanvas {
+    height: clamp(300px, 54vh, 420px);
   }
 
   .circularStage {

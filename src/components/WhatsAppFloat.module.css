@@ -22,6 +22,15 @@
   border-radius: 50px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.12);
   white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.textVisible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .iconBox {
@@ -29,15 +38,28 @@
   height: 56px;
   border-radius: 50%;
   background: #fff;
+  border: 2px solid #25d366;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   flex-shrink: 0;
 }
 
 @media (max-width: 640px) {
-  .float  { bottom: 20px; right: 16px; }
-  .text   { display: none; }           /* hide label on mobile, icon only */
-  .iconBox{ width: 52px; height: 52px; }
+  .float {
+    bottom: 20px;
+    right: 16px;
+    gap: 0;
+  }
+
+  .text {
+    position: absolute;
+    right: 0;
+    bottom: 62px;
+    font-size: 0.72rem;
+    padding: 8px 12px;
+  }
+
+  .iconBox { width: 52px; height: 52px; }
 }
