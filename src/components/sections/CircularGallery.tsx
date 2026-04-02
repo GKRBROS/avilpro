@@ -2,7 +2,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { useEffect, useRef } from "react";
-import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from "ogl";
+import {
+  Camera,
+  Mesh,
+  Plane,
+  Program,
+  Renderer,
+  Texture,
+  Transform,
+} from "ogl";
 import styles from "./CircularGallery.module.css";
 
 type GalleryItem = {
@@ -41,7 +49,12 @@ function autoBind(instance: any) {
   });
 }
 
-function createTextTexture(gl: any, text: string, font = "bold 30px monospace", color = "black") {
+function createTextTexture(
+  gl: any,
+  text: string,
+  font = "bold 30px monospace",
+  color = "black",
+) {
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
   if (!context) {
@@ -77,7 +90,13 @@ class Title {
   font: string;
   mesh: any;
 
-  constructor({ gl, plane, text, textColor = "#545050", font = "30px sans-serif" }: any) {
+  constructor({
+    gl,
+    plane,
+    text,
+    textColor = "#545050",
+    font = "30px sans-serif",
+  }: any) {
     autoBind(this);
     this.gl = gl;
     this.plane = plane;
@@ -88,7 +107,12 @@ class Title {
   }
 
   createMesh() {
-    const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
+    const { texture, width, height } = createTextTexture(
+      this.gl,
+      this.text,
+      this.font,
+      this.textColor,
+    );
     const geometry = new Plane(this.gl);
     const program = new Program(this.gl, {
       vertex: `
@@ -154,7 +178,21 @@ class Media {
   isAfter = false;
   scale = 1;
 
-  constructor({ geometry, gl, image, index, length, scene, screen, text, viewport, bend, textColor, borderRadius = 0, font }: any) {
+  constructor({
+    geometry,
+    gl,
+    image,
+    index,
+    length,
+    scene,
+    screen,
+    text,
+    viewport,
+    bend,
+    textColor,
+    borderRadius = 0,
+    font,
+  }: any) {
     this.geometry = geometry;
     this.gl = gl;
     this.image = image;
@@ -245,7 +283,10 @@ class Media {
     img.onload = () => {
       const applyTexture = () => {
         texture.image = img;
-        this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+        this.program.uniforms.uImageSizes.value = [
+          img.naturalWidth,
+          img.naturalHeight,
+        ];
       };
 
       if (typeof img.decode === "function") {
@@ -325,9 +366,14 @@ class Media {
     if (viewport) this.viewport = viewport;
 
     this.scale = this.screen.height / 1500;
-    this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
-    this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
-    this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
+    this.plane.scale.y =
+      (this.viewport.height * (900 * this.scale)) / this.screen.height;
+    this.plane.scale.x =
+      (this.viewport.width * (700 * this.scale)) / this.screen.width;
+    this.plane.program.uniforms.uPlaneSizes.value = [
+      this.plane.scale.x,
+      this.plane.scale.y,
+    ];
 
     this.padding = 2;
     this.width = this.plane.scale.x + this.padding;
@@ -367,10 +413,27 @@ class App {
   boundOnPointerLeave!: () => void;
   boundOnPointerMove!: () => void;
 
-  constructor(container: HTMLDivElement, { items, bend, textColor = "#ffffff", borderRadius = 0, font = "bold 30px Figtree", scrollSpeed = 2, scrollEase = 0.05 }: any = {}) {
+  constructor(
+    container: HTMLDivElement,
+    {
+      items,
+      bend,
+      textColor = "#ffffff",
+      borderRadius = 0,
+      font = "bold 30px Figtree",
+      scrollSpeed = 2,
+      scrollEase = 0.05,
+    }: any = {},
+  ) {
     this.container = container;
     this.scrollSpeed = scrollSpeed;
-    this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0, position: 0 };
+    this.scroll = {
+      ease: scrollEase,
+      current: 0,
+      target: 0,
+      last: 0,
+      position: 0,
+    };
 
     this.onCheckDebounce = debounce(this.onCheck.bind(this), 200);
 
@@ -413,7 +476,13 @@ class App {
     });
   }
 
-  createMedias(items: GalleryItem[] | undefined, bend = 1, textColor: string, borderRadius: number, font: string) {
+  createMedias(
+    items: GalleryItem[] | undefined,
+    bend = 1,
+    textColor: string,
+    borderRadius: number,
+    font: string,
+  ) {
     const fallbackItems: GalleryItem[] = [
       { image: "https://picsum.photos/seed/1/800/600", text: "Bridge" },
       { image: "https://picsum.photos/seed/2/800/600", text: "Desk Setup" },
@@ -453,7 +522,8 @@ class App {
   onTouchMove(e: TouchEvent | MouseEvent) {
     if (!this.isDown) return;
     const x = "touches" in e ? e.touches[0].clientX : e.clientX;
-    const distance = (this.start - x) * (this.scrollSpeed * 0.025) * this.getMotionFactor();
+    const distance =
+      (this.start - x) * (this.scrollSpeed * 0.025) * this.getMotionFactor();
     this.scroll.target = this.scroll.position + distance;
     this.lastPointerMoveAt = Date.now();
   }
@@ -465,7 +535,8 @@ class App {
 
   onWheel(e: WheelEvent) {
     const delta = e.deltaY;
-    this.scroll.target += (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
+    this.scroll.target +=
+      (delta > 0 ? this.scrollSpeed : -this.scrollSpeed) * 0.2;
     this.lastPointerMoveAt = Date.now();
     this.autoDirection = delta > 0 ? 1 : -1;
     this.onCheckDebounce();
@@ -526,8 +597,10 @@ class App {
 
     this.viewport = { width, height };
 
-    this.medias.forEach((media) => media.onResize({ screen: this.screen, viewport: this.viewport }));
-    
+    this.medias.forEach((media) =>
+      media.onResize({ screen: this.screen, viewport: this.viewport }),
+    );
+
     // Update auto-move speed multiplier on resize
     this.autoMoveSpeedMultiplier = this.getAutoMoveSpeedMultiplier();
   }
@@ -536,12 +609,19 @@ class App {
     const idleFor = Date.now() - this.lastPointerMoveAt;
     const shouldAutoMove = !this.isDown && (!this.isHovering || idleFor > 900);
     if (shouldAutoMove) {
-      this.scroll.target += this.scrollSpeed * this.autoMoveSpeedMultiplier * this.autoDirection;
+      this.scroll.target +=
+        this.scrollSpeed * this.autoMoveSpeedMultiplier * this.autoDirection;
     }
 
-    const effectiveEase = this.screen.width < 768 ? this.scroll.ease * 0.75 : this.scroll.ease;
-    this.scroll.current = lerp(this.scroll.current, this.scroll.target, effectiveEase);
-    const direction: "right" | "left" = this.scroll.current > this.scroll.last ? "right" : "left";
+    const effectiveEase =
+      this.screen.width < 768 ? this.scroll.ease * 0.75 : this.scroll.ease;
+    this.scroll.current = lerp(
+      this.scroll.current,
+      this.scroll.target,
+      effectiveEase,
+    );
+    const direction: "right" | "left" =
+      this.scroll.current > this.scroll.last ? "right" : "left";
 
     this.medias.forEach((media) => media.update(this.scroll, direction));
 
@@ -561,10 +641,16 @@ class App {
     this.boundOnPointerMove = this.onPointerMove.bind(this);
 
     window.addEventListener("resize", this.boundOnResize);
-    this.container.addEventListener("wheel", this.boundOnWheel, { passive: true });
+    this.container.addEventListener("wheel", this.boundOnWheel, {
+      passive: true,
+    });
     this.container.addEventListener("mousedown", this.boundOnTouchDown);
-    this.container.addEventListener("touchstart", this.boundOnTouchDown, { passive: true });
-    this.container.addEventListener("touchmove", this.boundOnTouchMove, { passive: true });
+    this.container.addEventListener("touchstart", this.boundOnTouchDown, {
+      passive: true,
+    });
+    this.container.addEventListener("touchmove", this.boundOnTouchMove, {
+      passive: true,
+    });
     this.container.addEventListener("touchend", this.boundOnTouchUp);
     this.container.addEventListener("pointerenter", this.boundOnPointerEnter);
     this.container.addEventListener("pointerleave", this.boundOnPointerLeave);
@@ -583,8 +669,14 @@ class App {
     this.container.removeEventListener("touchstart", this.boundOnTouchDown);
     this.container.removeEventListener("touchmove", this.boundOnTouchMove);
     this.container.removeEventListener("touchend", this.boundOnTouchUp);
-    this.container.removeEventListener("pointerenter", this.boundOnPointerEnter);
-    this.container.removeEventListener("pointerleave", this.boundOnPointerLeave);
+    this.container.removeEventListener(
+      "pointerenter",
+      this.boundOnPointerEnter,
+    );
+    this.container.removeEventListener(
+      "pointerleave",
+      this.boundOnPointerLeave,
+    );
     this.container.removeEventListener("pointermove", this.boundOnPointerMove);
 
     window.removeEventListener("mousemove", this.boundOnTouchMove);
@@ -596,7 +688,15 @@ class App {
   }
 }
 
-export default function CircularGallery({ items, bend = 3, textColor = "#ffffff", borderRadius = 0.05, font = "bold 30px Figtree", scrollSpeed = 2, scrollEase = 0.05 }: CircularGalleryProps) {
+export default function CircularGallery({
+  items,
+  bend = 3,
+  textColor = "#ffffff",
+  borderRadius = 0.05,
+  font = "bold 30px Figtree",
+  scrollSpeed = 2,
+  scrollEase = 0.05,
+}: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

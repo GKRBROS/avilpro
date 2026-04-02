@@ -158,7 +158,10 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1 }}
           >
-            Redefining a legendary blend with premium ingredients <span className={styles.breakDesktop}><br /></span>
+            Redefining a legendary blend with premium ingredients{" "}
+            <span className={styles.breakDesktop}>
+              <br />
+            </span>
             and a boutique experience. Discover the legend.
           </motion.p>
         </div>
