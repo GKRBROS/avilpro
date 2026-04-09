@@ -19,12 +19,12 @@ export const FooterNav = () => {
   };
 
   return (
-    <li className="items-start flex flex-col justify-start min-h-[auto] min-w-[auto] order-1 w-full md:justify-normal md:order-none md:w-auto">
-      <ul className="items-center gap-x-[14.08px] flex justify-between min-h-[auto] min-w-[auto] gap-y-[14.08px] w-full pl-0 md:gap-x-5 md:gap-y-5">
+    <li className="flex flex-col items-center justify-center min-h-[auto] min-w-[auto] order-1 w-full md:order-none md:w-auto mt-4 md:mt-0 md:mx-auto pt-[3px]">
+      <ul className="flex flex-col items-center min-h-[auto] min-w-[auto] gap-y-3 w-full pl-0 md:gap-y-4 md:items-start">
         {links.map((link) => (
           <li
             key={link.href}
-            className="items-center flex justify-center min-h-[auto] min-w-[auto] w-full mb-[11.968px] md:list-item md:justify-normal md:mb-[17px]"
+            className="flex min-h-[auto] min-w-[auto] w-full"
           >
             <a
               href={link.href}

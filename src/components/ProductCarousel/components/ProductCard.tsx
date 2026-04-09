@@ -15,7 +15,7 @@ export const ProductCard = (props: ProductCardProps) => {
     <div
       role="group"
       aria-label={props.ariaLabel}
-      className={`relative h-full min-h-[auto] min-w-[auto] shrink-0 w-[min(82vw,320px)] md:w-[410px] lg:w-[430px] ${props.variantClass}`}
+      className={`relative h-full min-h-[auto] min-w-[auto] shrink-0 w-[min(82vw,320px)] md:w-[320px] lg:w-[350px] ${props.variantClass}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

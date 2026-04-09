@@ -51,7 +51,7 @@ export const ItemsCarousel = () => {
         0;
       return cardW + gap;
     }
-    return window.innerWidth >= 768 ? 544 : 336;
+    return window.innerWidth >= 768 ? 374 : 336;
   };
 
   const doubled = [...slides, ...slides];

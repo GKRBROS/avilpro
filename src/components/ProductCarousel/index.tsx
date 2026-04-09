@@ -33,7 +33,7 @@ export const ProductCarousel = (props: ProductCarouselProps) => {
         0;
       return cardW + gap;
     }
-    return window.innerWidth >= 768 ? 506 : 336;
+    return window.innerWidth >= 768 ? 374 : 336;
   };
 
   const [isTransitioning, setIsTransitioning] = useState(true);
@@ -60,7 +60,7 @@ export const ProductCarousel = (props: ProductCarouselProps) => {
 
   return (
     <div className="relative">
-      <div className="mx-auto overflow-hidden w-full max-w-[calc(min(82vw,320px)+16px)] md:max-w-[844px] lg:max-w-[884px] px-2 pb-8 md:px-0 md:pb-12">
+      <div className="mx-auto overflow-hidden w-full max-w-[calc(min(82vw,320px)+16px)] md:max-w-[992px] lg:max-w-[1112px] px-2 pb-8 md:px-0 md:pb-12">
         <div
           ref={trackRef}
           className="flex select-none cursor-grab gap-4 active:cursor-grabbing md:gap-6"

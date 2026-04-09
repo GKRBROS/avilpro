@@ -37,27 +37,27 @@ export const IngredientsSection = () => {
             <div
               className={`flex h-full flex-col justify-center transition-all duration-700 delay-200 ${imageVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
             >
-              <p className="mb-[7.04px] text-[17.6px] font-medium leading-[27.456px] md:mb-2.5 md:text-[25px] md:leading-[39px]">
+              <p className="mb-[7.04px] text-[17.6px] font-medium leading-[27.456px] text-justify md:mb-2.5 md:text-[25px] md:leading-[39px]">
                 We offer the best and tasty foods. Our customer's convenience is
                 our priority, and this is a belief that permeates every
                 innovation and everything the team strives to achieve.
               </p>
               <ul className="space-y-3 text-[15px] font-medium leading-relaxed md:text-[18px]">
-                <li className="flex items-center gap-3">
-                  <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-green-700" />
-                  High Quality Products
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-green-700" />
+                  <span className="text-justify">High Quality Products</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-green-700" />
-                  Organic Ingredients from trusted suppliers
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-green-700" />
+                  <span className="text-justify">Organic Ingredients from trusted suppliers</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-green-700" />
-                  Best Service and welcoming atmosphere
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-green-700" />
+                  <span className="text-justify">Best Service and welcoming atmosphere</span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-green-700" />
-                  Top Chefs and authentic taste
+                <li className="flex items-start gap-3">
+                  <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-green-700" />
+                  <span className="text-justify">Top Chefs and authentic taste</span>
                 </li>
               </ul>
             </div>

@@ -13,7 +13,7 @@ export const ItemsCarouselSlide = (props: ItemsCarouselSlideProps) => {
     <div
       role="group"
       aria-label={props.ariaLabel}
-      className="relative h-full min-h-[auto] min-w-[auto] shrink-0 w-[min(84vw,320px)] md:w-[460px] lg:w-[520px]"
+      className="relative h-full min-h-[auto] min-w-[auto] shrink-0 w-[min(84vw,320px)] md:w-[320px] lg:w-[350px]"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

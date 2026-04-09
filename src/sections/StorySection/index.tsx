@@ -43,7 +43,7 @@ export const StorySection = () => {
               ref={contentRef}
               className={`transition-all duration-700 ${contentVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             >
-              <p className="text-[16.192px] font-medium capitalize leading-[27.456px] tracking-[0.2816px] text-neutral-800 md:text-[20px] md:leading-[34px] md:tracking-[0.4px]">
+              <p className="text-[16.192px] font-medium capitalize leading-[27.456px] tracking-[0.2816px] text-neutral-800 text-justify md:text-[20px] md:leading-[34px] md:tracking-[0.4px]">
                 Welcome to Avilpro premium Avil Milk Shop, where we serve the
                 creamiest, most delicious milkshakes in town! Our mission is to
                 provide top-notch quality, exceptional customer service, and a
